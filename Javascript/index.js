@@ -19,10 +19,21 @@ function updateTime() {
     tokyoDateElement.innerHTML = tokyoTime.format("MMM Do YYYY");
     tokyoTimeElement.innerHTML = tokyoTime.format("h:m:ss[<small>]A[</small>]");
   }
+  let mawsonElement = document.querySelector("#mawson");
+  if (mawsonElement) {
+    let mawsonDateElement = mawsonElement.querySelector(".date");
+    let mawsonTimeElement = mawsonElement.querySelector(".time");
+    let mawsonTime = moment().tz("Antarctica/Mawson");
+
+    mawsonDateElement.innerHTML = mawsonTime.format("MMM Do YYYY");
+    mawsonTimeElement.innerHTML = mawsonTime.format(
+      "h:m:ss[<small>]A[</small>]"
+    );
+  }
 }
 function updateCity(event) {
   let cityTimeZone = event.target.value;
-  if (cityTimeZone === "current"){
+  if (cityTimeZone === "current") {
     cityTimeZone = moment.tz.guess();
   }
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
